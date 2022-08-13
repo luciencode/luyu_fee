@@ -1,0 +1,52 @@
+.night img,.night svg {
+filter: brightness(50%)
+}
+
+.night .header  {
+    background-color: #1a2049
+}
+.night .header.scrolled{
+    background: #1a2049  !important
+}
+/*.night  {*/
+/*    background: #1a2049*/
+/*}*/
+/*.night.footer{*/
+/*    background-color: #1a2049}*/
+    
+.night .hot_posts .suiji,.night .hot_posts .hots {
+	background: #1a2049;
+}
+.night.cms-cat-s5>.col>article,.night #mobile-footer,.night.smhb,.night .article-content,.night.shuoming,.night.shuoming {
+    background: #1a2049;
+}
+
+.night.comments-box,.night #comment-post,.night.comt-box,.night.comt-ctrl{
+   background: #1a2049; 
+}
+.night .container{
+    background: #1a2049; 
+}
+/*.night.article-nav*/
+/*{*/
+/*         margin: 0px;*/
+/*         background:#1a2049;*/
+/*}*/
+
+.night.speedbar{
+    background-color:#1a2049;
+}
+.night #sign .part {
+    background-color: #817e7e;
+}
+.night.footer{
+    position:relative;
+	z-index:9;
+	clear:both;
+	padding:40px 30px;
+	font-size:12px;
+	line-height:12px;
+	text-align:center;
+	color:#999;
+        background-color: #7a7474;
+}
