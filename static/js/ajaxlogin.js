@@ -36,29 +36,6 @@ $(document).ready(function(){
 		$('.logout-nav').hide();
 		$('#user-login').show();
 		$('#user-div').hide();
-	});	
-	$('#pwre_ajax').click(function(){
-		var xemail = $('#reemail').val();
-		var isxemail = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
-		if (xemail=='') {
-			$('#contentdiv_t').css('margin-bottom','-12px').html('<font color="#87CEFA">邮箱不能为空</font>'); 
-		}else if(!isxemail.test(xemail)){
-			$('#contentdiv_t').css('margin-bottom','-12px').html('<font color="#87CEFA">邮箱格式不正确</font>'); 
-		}else{
-			$.ajax({
-				url:pjaxtheme + 'inc/pwre.php',
-				type:'post', 
-				dataType:'json', 
-				data:{email:xemail}, 
-				success:function(data){
-					if (data.status=='1') {
-						$('#contentdiv_t').css('margin-bottom','-12px').html('<font color="#87CEFA">该邮箱尚未注册</font>'); 
-					}else{
-						$('#contentdiv_t').css('margin-bottom','-12px').html('<font color="#87CEFA">'+data.msg+'</font>'); 
-					}
-				}
-			});
-		}
 	});
 	
     $('#send_ajax').click(function (){
