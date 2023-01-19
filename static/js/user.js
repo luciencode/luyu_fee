@@ -209,32 +209,7 @@ $('.zdy_img').on('click',function(){
 	$('.up_img_tips').fadeIn();
 	$('.up_img_tips').fadeOut(2000);
 });
-$('.up_img_div').on('click',function(){
-	var id = $(this).attr("data-id");
-	var url= pjaxtheme + 'inc/ajax.php?a=selectimage';
-	$.ajax( {  
-			url:url,  
-			dataType:'json',  
-			type: "POST",  
-			data: {"image":id},  
-			success: function(data){
-				if(data.result=="ok"){
-					$("#up-img-touch img").attr("src",data.file);
-					var img_name=data.file.split('/')[2];
-					console.log(img_name);
-					$("#pic").text(img_name);
-				}
-				swal("温馨提示!", "修改成功", "success");
-				$(".modal-backdrop").remove();
-				$("body").removeClass('modal-open');
-				$.pjax.reload(pjax_id, {fragment: pjax_id,timeout: 8000 });
-			},
-			error: function(){
-			
-				swal("温馨提示!", "修改失败", "error");
-			}  
-	 }); 
-});	
+
 function bangdingok(){
 	$('#qq_login').hide();$('#qq_login_jiebang').show();
 }
@@ -381,7 +356,6 @@ $(document).ready(function(){
     $('#update-submit').click(function (){
 		var username = $("input[name=username]").val().replace(/(^\s*)|(\s*$)/g, "");
 		var name = $("input[name=name]").val().replace(/(^\s*)|(\s*$)/g, "");
-		var qq = $("input[name=qq]").val().replace(/(^\s*)|(\s*$)/g, "");
 		var email = $("input[name=email]").val().replace(/(^\s*)|(\s*$)/g, "");
 		var description = $("textarea[name=description]").val().replace(/(^\s*)|(\s*$)/g, "");
 		var nwp = $("input[name=newpass]").val().replace(/(^\s*)|(\s*$)/g, "");

@@ -69,7 +69,9 @@ if( $('.carousel').length ){
 
     tbquire(['hammer'], function(Hammer) {
 
-        // window.Hammer = Hammer
+        /*
+　　　*	window.Hammer = Hammer
+　　　　*/ 
         
         var mc = new Hammer(el_carousel[0]);
 
@@ -344,7 +346,6 @@ $(document).ready(function(){
     });
 	
 	
-	
 	  $('.share-haibao').click(function() {
 			$('.bigger-share').addClass('haibao-on');
             $('.dialog_overlay').show();
@@ -394,8 +395,6 @@ $(window).resize(function(event) {
     _wid = $(window).width()
 });
 
-
-
 var scroller = $('.rollbar')
 var _fix = (jsui.bd.hasClass('nav_fixed') && !jsui.bd.hasClass('page-template-navs')) ? true : false
 $(window).scroll(function() {
@@ -410,10 +409,6 @@ $(window).scroll(function() {
     h > 66 ? scroller.fadeIn() : scroller.fadeOut();
 })
 
-
-
-
-
 /* 
  * bootstrap
  * ====================================================
@@ -422,9 +417,6 @@ $('.user-welcome').tooltip({
     container: 'body',
     placement: 'bottom'
 })
-
-
-
 
 
 /* 
@@ -806,7 +798,7 @@ function pjax_done() {
             }
         }
     });
-
+	
 
     if (Number(jsui.iasnum)) {
         require(['ias.min'], function (ias) {
@@ -894,56 +886,7 @@ if (document.body.offsetWidth >= 600 && jsui.is_pjax == 1) {
         })
     });
 }
-
-/* 评论内图片缩放 */
-$(function () {
-        $(".comt-main-img").commentImg({
-			imgNavBox:'.photos-thumb', 
-			imgViewBox:'.photo-viewer'
-        });
-    });
-
-
-    function grin(tag) {
-    	var myField;
-    	tag = ' ' + tag + ' ';
-        if (document.getElementById('comment') && document.getElementById('comment').type == 'textarea') {
-    		myField = document.getElementById('comment');
-    	} else {
-    		return false;
-    	}
-    	if (document.selection) {
-    		myField.focus();
-    		sel = document.selection.createRange();
-    		sel.text = tag;
-    		myField.focus();
-    	}
-    	else if (myField.selectionStart || myField.selectionStart == '0') {
-    		var startPos = myField.selectionStart;
-    		var endPos = myField.selectionEnd;
-    		var cursorPos = endPos;
-    		myField.value = myField.value.substring(0, startPos)
-    					  + tag
-    					  + myField.value.substring(endPos, myField.value.length);
-    		cursorPos += tag.length;
-    		myField.focus();
-    		myField.selectionStart = cursorPos;
-    		myField.selectionEnd = cursorPos;
-    	}
-    	else {
-    		myField.value += tag;
-    		myField.focus();
-    	}
-    }
-/* 表情颜色弹窗 */
-$(document).ready(function () {   
-	$("#comment-smiley").click(function(){   
-		$("#smiley").toggle(500);   
-	});  
-	$("#font-color").click(function(){   
-		$("#fontcolor").toggle(500);   
-	});   
-});  
+ 
 
 /* qq获取资料 */
 
@@ -1085,6 +1028,11 @@ $(function() {
 		}
 	})
 });
+  /*
+ * 搜索带标签
+*/
+$('.luyu-fee-search-s').click(function () {$('.search-forms').addClass('is-visible')});
+$('.search-go,.close-search').click(function(){$(".search-forms").removeClass("is-visible")});
 
   /*
  * 单页面标题框
@@ -1103,15 +1051,6 @@ jQuery(function(){
 			$(this).stop().animate({marginLeft:"0px"},100);
 		});
 });
-// ***图片懒加载***//
-echo.init({
-  offset: 100,
-  throttle: 250,
-  unload: false,
-  callback: function (element, op) {
-    console.log(element, 'has been', op + 'ed')
-  }
-});
 
 /*  fancybox 浮层看图 */
 /* $(".article-content img").parent('a').attr("data-fancybox","gallery"); */
@@ -1123,4 +1062,145 @@ $('.ajax_qq_login').on('click',function(){
 		window.open(pjaxtheme + "inc/ajax.php?a=qq_login", "qq_bangding", "top=200,left=200,height=600, width=800, toolbar =no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
 	});
 	
-	
+/*
+*	表情颜色弹窗
+*/
+$(document).ready(function () {   
+	$("#comment-smiley").click(function(){   
+		$("#smiley").toggle(500);   
+	});  
+	$("#font-color").click(function(){   
+		$("#fontcolor").toggle(500);   
+	});   
+}); 
+function grin(tag) {
+    	var myField;
+    	tag = ' ' + tag + ' ';
+        if (document.getElementById('comment') && document.getElementById('comment').type == 'textarea') {
+    		myField = document.getElementById('comment');
+    	} else {
+    		return false;
+    	}
+    	if (document.selection) {
+    		myField.focus();
+    		sel = document.selection.createRange();
+    		sel.text = tag;
+    		myField.focus();
+    	}
+    	else if (myField.selectionStart || myField.selectionStart == '0') {
+    		var startPos = myField.selectionStart;
+    		var endPos = myField.selectionEnd;
+    		var cursorPos = endPos;
+    		myField.value = myField.value.substring(0, startPos)
+    					  + tag
+    					  + myField.value.substring(endPos, myField.value.length);
+    		cursorPos += tag.length;
+    		myField.focus();
+    		myField.selectionStart = cursorPos;
+    		myField.selectionEnd = cursorPos;
+    	}
+    	else {
+    		myField.value += tag;
+    		myField.focus();
+    	}
+    }
+
+
+function sendinfo(url,node){
+	updateEle(node,"<div class='cal_loading'>&nbsp;</div>");
+	XMLHttp.sendReq('GET',url,'',function(obj){updateEle(node,obj.responseText);});
+}
+function loadr(url,tid){
+	url = url+"&stamp="+timestamp();
+	var r=document.getElementById("r_"+tid);
+	var rp=document.getElementById("rp_"+tid);
+	if (r.style.display=="block"){
+		r.style.display="none";
+		rp.style.display="none";
+	} else {
+		r.style.display="block";
+		r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">加载中...</span>';
+		XMLHttp.sendReq('GET',url,'',function(obj){r.innerHTML = obj.responseText;rp.style.display="block";});
+	}
+}
+function reply(url,tid){
+	var rtext=document.getElementById("rtext_"+tid).value;
+	var rname=document.getElementById("rname_"+tid).value;
+	var rcode=document.getElementById("rcode_"+tid).value;
+	var rmsg=document.getElementById("rmsg_"+tid);
+	var rn=document.getElementById("rn_"+tid);
+	var r=document.getElementById("r_"+tid);
+	var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
+	XMLHttp.sendReq('POST',url,data,function(obj){
+		if(obj.responseText == 'err1'){rmsg.innerHTML = '(回复长度需在140个字内)';
+		}else if(obj.responseText == 'err2'){rmsg.innerHTML = '(昵称不能为空)';
+		}else if(obj.responseText == 'err3'){rmsg.innerHTML = '(验证码错误)';
+		}else if(obj.responseText == 'err4'){rmsg.innerHTML = '(不允许使用该昵称)';
+		}else if(obj.responseText == 'err5'){rmsg.innerHTML = '(已存在该回复)';
+		}else if(obj.responseText == 'err0'){rmsg.innerHTML = '(禁止回复)';
+		}else if(obj.responseText == 'succ1'){rmsg.innerHTML = '(回复成功，等待管理员审核)';
+		}else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
+}
+function re(tid, rp){
+	var rtext=document.getElementById("rtext_"+tid).value = rp;
+	focusEle("rtext_"+tid);
+}
+function commentReply(pid,c){
+	var response = document.getElementById('comment-post');
+	document.getElementById('comment-pid').value = pid;
+	document.getElementById('cancel-reply').style.display = '';
+	c.parentNode.parentNode.appendChild(response);
+}
+function cancelReply(){
+	var commentPlace = document.getElementById('comment-place'),response = document.getElementById('comment-post');
+	document.getElementById('comment-pid').value = 0;
+	document.getElementById('cancel-reply').style.display = 'none';
+	commentPlace.appendChild(response);
+}
+
+function cal_margin(links,dp_id){
+	var count,menus,cal_width;
+	cal_width = 85;
+	menus=document.getElementById('dropmenus'+dp_id);		
+	count=links.offsetWidth-cal_width;
+	menus.style.width=cal_width+'px';
+	menus.style.marginLeft=count/2+'px';
+}
+/**
+*	主题提交评论结束
+*/
+
+/**
+*	代码块复制
+*/
+
+[...document.getElementsByTagName("pre")].forEach(item => {
+        item.style.position = "relative";
+        let copyButton = document.createElement("button")
+        copyButton.style.cssText = 'padding: 0px 5px;color: #ffffff;background-color: #0d6efd;border: 0;border-radius:4px;position:absolute;right:10px;top:10px;'
+        copyButton.innerHTML = "复制";
+        copyButton.onclick = function () {
+            let copyData = item.firstChild.innerText
+            copyToClipboard(copyData)
+            copyButton.innerHTML = "复制成功";
+            setTimeout(function() {
+                copyButton.innerHTML = "复制";
+            }, 1000);
+        }
+        item.appendChild(copyButton)
+});
+function copyToClipboard(content) {
+    if (window.clipboardData) {
+        window.clipboardData.setData('text', content);
+    } else {
+        (function (content) {
+            document.oncopy = function (e) {
+                e.clipboardData.setData('text', content);
+                e.preventDefault();
+                document.oncopy = null;
+            }
+        })(content);
+        document.execCommand('Copy');
+    }
+}
+
