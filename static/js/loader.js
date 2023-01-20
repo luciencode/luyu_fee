@@ -37,7 +37,7 @@ O),s=s.replace(Q,""),g.jsExtRegExp.test(s)&&(s=I),q.deps=q.deps?q.deps.concat(s)
 
 
 tbquire.config({
-	baseUrl: 'https://cdn.jsdelivr.net/gh/luciencode/luyu_fee@2.8/' + 'static/js',
+	baseUrl: 'https://cdn.jsdelivr.net/gh/luciencode/luyu_fee@2.8.1/' + 'static/js',
 	urlArgs: '',
 	paths: {
 		'jquery.cookie' : 'libs/jquery.cookie.min',
